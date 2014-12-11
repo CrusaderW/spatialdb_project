@@ -8,8 +8,7 @@ CREATE TABLE weatherstation
   cityName character varying(256),
   longitude numeric,
   latitude numeric,
-  CONSTRAINT spatial_ref_sys_pkey PRIMARY KEY (srid),
-  CONSTRAINT spatial_ref_sys_srid_check CHECK (srid > 0 AND srid <= 998999)
+  CONSTRAINT weatherstation_pkey PRIMARY KEY (cityId),
 )
 WITH (
   OIDS=FALSE
