@@ -181,7 +181,7 @@ Miriam:
     	The article claims, that Express provides libraries in JavaScript to access the PostGIS-server and returns GeoJSON, which can be directly forwarded.\\ Sadly this project had to be aborted, before we were able to verify this claim and evaluate how much additional work has be done to get it up and running.\\
     	If you follow the guide mentioned above you can start the nodejs-server, but won't see anything apart from a blank page, since we abandoned the project during the set-up of the ejs-based user interface\footnote{http://codeforgeek.com/2014/06/express-nodejs-tutorial/ (last access: 28.02.2015)} for express 
    		\item \textbf{Option B:} Leaflet with yet undefined backend logic in python.\\ [0.1cm]
-   		\textbf {Accessable by:}
+   		\textbf {Accessible by:}
    		\begin{lstlisting}
    		spatialdb_project/weatherdb/index.html
    		\end{lstlisting}
@@ -251,14 +251,14 @@ Openweathermap offers weather forecasts for free as XML or json. We decided to d
     \end{tabular}
 \end{center}
 
-On the owm-HP a fix json-file exists with all weatherstations (cities) where weather is meassured. It is structured as follows:\newline
+On the owm-HP a fix json-file exists with all weatherstations (cities) where weather is measured. It is structured as follows:\newline
  \begin{lstlisting}
 {"_id":2947416,"name":"Bochum","country":"DE",
 	"coord":{"lon":7.21667,"lat":51.48333}}
 {"_id":567322,"name":"Chvizhepse","country":"RU",
 	"coord":{"lon":40.085278,"lat":43.631111}}
 \end{lstlisting}
-At first we created a new file with all the german cities with groovy.The number of rows decreased from 209579 to 28783.
+At first we created a new file with all the german cities with groovy. The number of rows decreased from 209579 to 28783.
 \newpage
 \definecolor{myGrey}{gray}{0.9}
 
@@ -304,7 +304,7 @@ class FilterCityListTest {
 }
 \end{lstlisting}
 
-With this new file we created all the URLs to get weatherforecasts. This list of URLs is used for the daily download.
+With this new file we created all the URLs to get weather-forecasts. This list of URLs is used for the daily download.
 
 \subsection{Schema}
 
