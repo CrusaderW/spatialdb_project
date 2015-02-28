@@ -1,0 +1,322 @@
+\documentclass[paper=a4, fontsize=11pt]{article} % A4 paper and 11pt font size
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[ngerman,british,UKenglish,USenglish,american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{todonotes}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{ulem}
+\definecolor{grey}{rgb}{0.4, 0.4, 0.4}
+
+%\usepackage{sectsty} % Allows customizing section commands
+%\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead[R]{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{\thepage} % Page numbering for center footer
+\fancyfoot[R]{} % Empty right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+%farbige Hyperlinks
+%\definecolor{refcolor}{rgb}{0,.2,.4}
+%schwarze Hyperlinks
+\definecolor{refcolor}{rgb}{0,0,0}
+%Hyperref Color
+\hypersetup{pdftex=true, colorlinks=true, breaklinks=true, linkcolor=refcolor, menucolor=refcolor, pagecolor=refcolor, citecolor=refcolor, urlcolor=blue}
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+% Code Listing Style
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\lstset{
+	basicstyle=\ttfamily,
+	commentstyle=\color{darkgreen},
+	keywordstyle=\color{darkblue}\fontseries{sb}\fontshape{n}\selectfont,
+	stringstyle=\color{darkred},
+%	identifierstyle=\color{darkgreen},
+%    moredelim=[is][\underbar]{_}{_},
+	breaklines=true,
+	tabsize=2,
+%	xleftmargin=-1mm,
+%	xrightmargin=3mm,
+%	aboveskip=\smallskipamount,
+%	belowskip=\smallskipamount,
+	numbers=none,
+	frame=none,
+	showstringspaces=false,
+	captionpos=t,
+%	framexbottommargin=3pt,
+%	framextopmargin=3pt,
+	% Umlaute
+	literate=%
+		{Ö}{{\"O}}1
+		{Ä}{{\"A}}1
+		{Ü}{{\"U}}1
+		{ß}{{\ss}}2
+		{ü}{{\"u}}1
+		{ä}{{\"a}}1
+		{ö}{{\"o}}1
+}
+
+% BibLaTeX
+%\usepackage[style=authoryear]{biblatex}
+%\usepackage[style=numeric]{biblatex}
+\usepackage[style=alphabetic]{biblatex}
+
+\AtEveryBibitem{\clearlist{language}} % clears language
+\AtEveryBibitem{\clearfield{note}}    % clears notes
+\AtEveryBibitem{\clearfield{doi}} % clears doi
+\AtEveryBibitem{\clearfield{isbn}} % clears doi
+\AtEveryBibitem{\clearfield{issn}} % clears doi
+\addbibresource{bibliography.bib} % Syntax for version >= 1.2
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{\includegraphics[width=0.6\textwidth]{pictures/logo} \\ [5pt] Arbeitsgruppe Datenbanken und Informationssysteme \\ [20pt] \includegraphics[width=0.15\textwidth]{pictures/DBIS_Logo_rgb_web.png}} \\ [10pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Spatial Databases:\\ Project Documentation (orphaned) \\ [0.15cm] % The assignment title
+\normalsize \textsc{Setup-Guide and Documentation for Spatial-Weather-Project} \\ [0.4cm]
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Christian Wirth (4498611) \\ Miriam Seel (dropped out)}
+
+\date{\today}
+
+\begin{document}
+\begin{titlepage}
+\pagenumbering{Roman}
+\maketitle
+\thispagestyle{empty}
+\end{titlepage}
+
+\setcounter{page}{1}
+\addcontentsline{toc}{section}{\protect\numberline{}{Table of Contents}}
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\setcounter{page}{1}
+\section{Task}
+
+The goal of the project is to work with weather data and OpenStreetMap (OSM). 
+The steps to be taken are as follows \footnote{Task as stated in the Project-description by Daniel Kressner}: 
+
+\begin{itemize}
+      \item Find data sources for: 
+      \begin{itemize}
+         \item Medium-range (3–7 days) and short-range (12–48 hours) weather forecasts
+         \item Current and historical weather data from weather stations
+         \item OpenStreetMap data for districts and cities
+         
+      \end{itemize}
+      \item Model your data in an ER and store the data in PostGIS.
+      \item Overlay OSM areas with forecast and historical weather data.
+      \item Visualize the probability of forecasts compared to historical weather data on a map.
+   \end{itemize}
+
+
+\section{Project}
+\label{sec:Umsetzung}
+
+\subsection{Responsibilies}
+
+Christian:
+	\begin{itemize}
+    	\item PostGIS-server set-up \& configuration
+    	\item Download \& importing osm-data
+   		\item Backend-logic
+    	\item Frontend
+    \end{itemize}
+    
+Miriam:
+	\begin{itemize}
+    	\item Parsing \& importing weather-data
+    	\item Schema \& data-model
+    	\item Queries \& query-optimisation
+    	\item Documentation
+    \end{itemize}
+
+\newpage
+\subsection{Environment}
+\begin{itemize}
+	\item Virtueller Server (orphaned)
+    \item PostGIS (orphaned)
+    \item Extensions aktiviert (orphaned)
+    \begin{itemize}
+    	\item Enable PostGIS (includes raster) -> CREATE EXTENSION postgis;
+   		\item Enable Topology -> CREATE EXTENSION postgis\_topology;
+    	\item Fuzzy matching -> CREATE EXTENSION fuzzystrmatch;\\
+    	Fuzzy string matching was activated in order to implement a fuzzy string search for locations.
+    \end{itemize}
+    \item Frontend: Leaflet
+    \item Backend
+     \begin{itemize}
+    	\item \textbf{Option A:} Express for Nodejs\\ [0.1cm]
+    	Our approach for the Backend follows a guide on Boomphisto' Blog
+    	\footnote{http://boomphisto.blogspot.de/2011/07/nodejs-express-leaflet-postgis-awesome.html (last access: 28.02.2015)}, which explains the setup of a Node-server with Express, a framework providing controllers and libraries for PostGIS as well as Leaflet.
+    	The article claims, that Express provides libraries in JavaScript to access the PostGIS-server and returns GeoJSON, which can be directly forwarded.\\ Sadly this project had to be aborted, before we were able to verify this claim and evaluate how much additional work has be done to get it up and running.\\
+    	If you follow the guide mentioned above you can start the nodejs-server, but won't see anything apart from a blank page, since we abandoned the project during the set-up of the ejs-based user interface\footnote{http://codeforgeek.com/2014/06/express-nodejs-tutorial/ (last access: 28.02.2015)} for express 
+   		\item \textbf{Option B:} Leaflet with yet undefined backend logic in python.\\ [0.1cm]
+   		\textbf {Accessable by:}
+   		\begin{lstlisting}
+   		spatialdb_project/weatherdb/index.html
+   		\end{lstlisting}
+   		This was our fallback-approach, in case we would run into essential problems with Option A, since we knew, that Option B already worked for other teams.
+    \end{itemize}
+\end{itemize}
+
+\newpage
+\subsection{Saving weatherdata}
+Openweathermap offers weather forecasts for free as XML or json. We decided to download the data as json-files, because the size of data is much smaller (http://openweathermap.org/forecast). This Data has a timestamp in Unix-Time, so it will be necessary to convert that format to date-format. 
+\begin{lstlisting}
+{"cod":"200","message":0.0139,
+"city":{
+	"id":2950159,
+    "name":"Berlin",
+	"coord":{"lon":13.41053,"lat":52.524368},
+	"country":"DE","population":0,
+	"sys":{"population":0}},
+"cnt":1,
+"list":[{
+	"dt":1417860000, //unix-time
+	"temp":{
+		"day":4.46,
+		"min":3.79,
+		"max":4.46,
+		"night":3.79,
+		"eve":4.46,
+		"morn":4.46},
+	"pressure":1023.77,
+	"humidity":100,
+	"weather":[{"id":600,"main":"Snow","description":"light snow",
+    		"icon":"13d"}],"speed":2.17,"deg":226,"clouds":88,
+   	 		"snow":0.25}]}
+\end{lstlisting}
+
+\begin{center}
+    \begin{tabular}{ | l | p{5cm} |}
+    \hline
+    \textbf{Parameter} & \textbf{Description} \\ \hline
+    city.id & City identification \\ \hline
+    city.name & City name \\ \hline
+    city.country & Country (GB, JP etc.) \\ \hline
+    
+    coord.lat & City geo location, lat \\ \hline
+    coord.lon & City geo location, lon \\ \hline
+    
+    cnt & Number of lines returned by this API call \\ \hline
+    dt & Data receiving time, unix time, GMT \\ \hline
+    temp.day & Day temperature \\ \hline
+    temp.min & Min daily temperature \\ \hline
+    temp.max & Max daily temperature \\ \hline
+    temp.night & Night temperature \\ \hline
+    temp.eve & Evening temperature \\ \hline
+    temp.morn & Morning temperature \\ \hline
+    humidity & Humidity \\ \hline
+    pressure & Atmospheric pressure \\ \hline
+    wind.speed & Wind speed, mps \\ \hline
+    wind.deg & Wind direction, degrees (meteorological) \\ \hline
+    wind.gust & Wind gust, mps \\ \hline
+    clouds.all & Cloudiness \\ \hline
+    weather.id & Weather condition id \\ \hline
+    weather.main & Group of weather parameters (Rain, Snow, Extreme etc.) \\ \hline
+    weather.description & Weather condition within the group \\ \hline
+    weather.icon & Weather icon id \\ \hline
+    rain & Precipitation volume for last 3 hours, mm \\ \hline
+    snow & Snow volume for last 3 hours, mm \\ \hline
+    \end{tabular}
+\end{center}
+
+On the owm-HP a fix json-file exists with all weatherstations (cities) where weather is meassured. It is structured as follows:\newline
+ \begin{lstlisting}
+{"_id":2947416,"name":"Bochum","country":"DE",
+	"coord":{"lon":7.21667,"lat":51.48333}}
+{"_id":567322,"name":"Chvizhepse","country":"RU",
+	"coord":{"lon":40.085278,"lat":43.631111}}
+\end{lstlisting}
+At first we created a new file with all the german cities with groovy.The number of rows decreased from 209579 to 28783.
+\newpage
+\definecolor{myGrey}{gray}{0.9}
+
+\begin{lstlisting}[language=java, 		% Setzt die Sprache
+	basicstyle=\scriptsize\ttfamily, 	% Setzt den Standardstil
+	keywordstyle=\color{red}\bfseries,	% Setzt den Stil für Schlüsselwörter
+	identifierstyle=\color{blue},		% Identifier bekommen keine gesonderte formatierung
+	commentstyle=\color{DarkGreen},		% Stil für Kommentare
+	stringstyle=\ttfamily, 				% Stil für Strings (gekennzeichnet mit "String")
+	breaklines=true, 					% Zeilen werden umgebrochen
+	numbers=left, 						% Zeilennummern links
+	numberstyle=\tiny, 					% Stil für die Seitennummern
+	frame=single, 						% Rahmen
+	backgroundcolor=\color{myGrey}, 	% Hintergrundfarbe
+	caption={groovy-code for cityfilter},	% Caption
+	tabsize=2							% Größe der Tabulatoren
+	]
+class FilterCityList {
+
+	public static void filterCitiesFileByCountryDe(def fileName){
+
+		def file = new File(fileName)
+		StringWriter writer = new StringWriter()
+		def fw = new FileWriter("/germanCities.txt")
+		file.filterLine(writer) { line ->
+			line.contains("\"country\":\"DE\"")
+		}
+		println writer.toString()
+		fw.write(writer.toString())
+		fw.close()
+	}
+}
+
+
+class FilterCityListTest {
+
+	@Test
+	public void testFilterCitiesFileByCountryDe() {
+		FilterCityList.filterCitiesFileByCountryDe("/city.list.json")
+		assertTrue(true);
+	}
+
+}
+\end{lstlisting}
+
+With this new file we created all the URLs to get weatherforecasts. This list of URLs is used for the daily download.
+
+\subsection{Schema}
+
+\textbf{weatherStation}(cityId, cityName, cityCountry, longitude, latitude)\newline
+\textbf{forecastData}(weatherstationId, dataTime, tempDay, tempMin, tempMax, tempNight, tempEve, tempMorn, humidity, pressure, windSpeed, windDirection, windGust, cloudiness, weatherCondition, weatherDecription, weatherIcon, rain, snow, insertdate)\newline
+\textbf{weatherData}(weatherstationId, currentFlag, dataTime, tempDay, tempMin, tempMax, tempNight, tempEve, tempMorn, humidity, pressure, windSpeed, windDirection, windGust, cloudiness, weatherCondition, weatherDecription, weatherIcon, rain, snow, insertdate)\\
+\ldots
+
+\section{Appendix}
+\subsection{Link to Repository}
+\begin{lstlisting}
+https://github.com/CrusaderW/spatialdb_project
+\end{lstlisting}
+
+\end{document}
